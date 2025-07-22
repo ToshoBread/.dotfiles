@@ -1,0 +1,133 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: rgba(30, 30, 46, 0.7);
+  border-radius: 12px;
+  color: #cdd6f4;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/* Workspaces */
+#workspaces {
+  background: rgba(49, 50, 68, 0.8);
+  border-radius: 12px;
+  margin: 4px 0px;
+  padding: 0px 8px;
+}
+
+#workspaces button {
+  color: #6c7086;
+  background: transparent;
+  border-radius: 8px;
+  margin: 2px 1px;
+  padding: 4px 10px 4px 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active {
+  background: #89b4fa;
+  color: #1e1e2e;
+}
+
+#workspaces button:hover {
+  background: #585b70;
+  color: #cdd6f4;
+}
+
+/* Center module - Window title */
+#window {
+  background: transparent;
+  color: #cdd6f4;
+  font-weight: normal;
+  margin: 0px;
+  padding: 0px 16px;
+}
+
+/* Right modules - all in one continuous bar */
+#tray,
+#bluetooth,
+#network,
+#battery,
+#clock,
+#custom-power {
+  background: transparent;
+  color: #cdd6f4;
+  margin: 0px;
+  padding: 0px 12px;
+  border-left: 1px solid rgba(108, 112, 134, 0.3);
+}
+
+#tray {
+  border-left: none;
+  padding: 0px 8px;
+}
+
+/* Individual module styling */
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #f38ba8;
+}
+
+#network {
+  color: #cdd6f4;
+}
+
+#battery {
+  color: #cdd6f4;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: #a6e3a1;
+}
+
+#battery.critical:not(.charging) {
+  color: #f38ba8;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#clock {
+  color: #cdd6f4;
+}
+
+/* Hover effects - subtle */
+#network:hover,
+#battery:hover,
+#clock:hover {
+  background: rgba(69, 71, 90, 0.5);
+}
+
+#workspaces:hover {
+  background: rgba(69, 71, 90, 0.9);
+}
+
+#custom-manjaro {
+  margin: 0px 12px;
+}
+
+/* Animation for critical battery */
+@keyframes blink {
+  to {
+    background-color: #1e1e2e;
+    color: #f38ba8;
+  }
+}
