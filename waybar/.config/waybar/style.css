@@ -2,7 +2,7 @@
   border: none;
   border-radius: 0;
   font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
-  font-size: 13px;
+  font-size: 14px;
   min-height: 0;
 }
 
@@ -68,6 +68,16 @@ window#waybar.hidden {
   border-left: 1px solid rgba(108, 112, 134, 0.3);
 }
 
+/* Left modules */
+#wireplumber,
+#backlight,
+#custom-manjaro {
+  background: transparent;
+  color: #cdd6f4;
+  padding: 0 15px 0 12px;
+  border-right: 1px solid rgba(108, 112, 134, 0.3);
+}
+
 #tray {
   border-left: none;
   padding: 0px 8px;
@@ -120,14 +130,10 @@ window#waybar.hidden {
   background: rgba(69, 71, 90, 0.9);
 }
 
-#custom-manjaro {
-  margin: 0px 12px;
-}
-
 /* Animation for critical battery */
 @keyframes blink {
   to {
-    background-color: #1e1e2e;
+    background-color: #880022;
     color: #f38ba8;
   }
 }

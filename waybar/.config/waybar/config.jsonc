@@ -8,9 +8,32 @@
     "margin-left": 12,
     "margin-right": 12,
     
-    "modules-left": ["custom/manjaro", "hyprland/workspaces"],
+    "modules-left": ["custom/manjaro", "wireplumber",  "backlight", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["tray", "bluetooth", "network", "battery", "clock"],
+    "modules-right": ["tray", "network", "bluetooth", "battery", "clock"],
+
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "states": {
+            "low": 30,
+            "mid": 50,
+            "high": 70
+        },
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-alt": "{icon}",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "tooltip": false
+    },
     
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -28,37 +51,31 @@
         "max-length": 50,
         "separate-outputs": true
     },
-    
-    "clock": {
-        "format": "{:%I:%M %p}",
-        "format-alt": "{:%A, %B %d, %Y}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
 
     "tray": {
         "icon-size": 18,
         "spacing": 10
     },
-
-    "bluetooth": {
-        "format": " {status}",
-	    "format-disabled": "", // an empty format will hide the module
-	    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-	    "tooltip-format": "{controller_alias}\t{controller_address}",
-	    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-	    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
-    },
     
     "network": {
-        "format-wifi": "{essid}  {signalStrength}%",
+        "format-wifi": "{essid}   {signalStrength}%",
         "format-ethernet": "",
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "⚠",
+        "format-disconnected": "󰖪",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "on-click-right": "nm-connection-editor"
     },
     
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+
     "battery": {
         "states": {
             "good": 90,
@@ -67,6 +84,12 @@
         },
         "format": "{capacity}% {icon}",
         "format-icons": ["", "", "", "", ""]
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%A, %B %d, %Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
 
     "custom/manjaro": {

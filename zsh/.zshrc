@@ -19,6 +19,8 @@ if [ -f ~/.config/zsh/scripts/.aliases ]; then
 fi
 
 export PATH="$HOME/.config/zsh/scripts:$PATH"
+export MAVEN_OPTS="--sun-misc-unsafe-memory-access=allow"
+
 
 
 eval "$(starship init zsh)"
