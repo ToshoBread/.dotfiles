@@ -1,13 +1,14 @@
 * {
   font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
   background: transparent;
-  color: #cdd6f4;
+  color: #b9b9bb;
 }
 
 #window {
-  color: #cdd6f4;
-  background: rgba(30, 30, 46, 0.7);
-  border-radius: 1rem;
+  color: #b9b9bb;
+  background: rgba(25, 25, 25, 0.7);
+  border: solid 1px #b9b9bb;
+  border-radius: 18px;
 }
 
 #scroll {
@@ -17,37 +18,34 @@
 }
 
 #inner-box {
-  padding-top: 2rem;
+  padding-top: 1rem;
+  margin-top: 2px;
 }
 
 #entry {
   border-style: none;
-  border-color: #d8cab8;
-  color: #d8cab8;
-  padding: 6px;
-  margin-bottom: 8px;
-  margin-left: 12px;
-  margin-right: 12;
-
+  padding: 8px;
+  margin-bottom: 15px;
+  margin-left: 8px;
+  margin-right: 8px;
   border-radius: 12px;
 }
 
 #entry:selected {
-  background: #27232b;
-  color: #d8cab8;
+  background: rgba(185, 185, 187, 0.1);
+  color: #f4a881;
   font-weight: bold;
   outline: none;
 }
 
 #input {
-  background-color: #cdd6f4ee;
-  color: #cdd6f4;
-  border-color: #cdd6f4;
+  color: #b9b9bb;
+  border-color: #b9b9bb;
 
   border-style: none;
   border-width: 1px;
 
-  font-style: normal;
+  font-style: italic;
 
   border-radius: 1rem;
   border-bottom-left-radius: 0px;
@@ -57,8 +55,7 @@
   margin: 8px;
 }
 #input:focus {
-  background: #27232b;
-  background-color: #27232b;
+  background: rgba(185, 185, 187, 0.1);
   border-color: #cdd6f4;
   font-style: italic;
 }

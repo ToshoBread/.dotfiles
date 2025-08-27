@@ -7,11 +7,8 @@
 }
 
 window#waybar {
-  background-color: rgba(30, 30, 46, 0.7);
-  border-radius: 12px;
-  color: #cdd6f4;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+  background: transparent;
+  color: #d7d7ff;
 }
 
 window#waybar.hidden {
@@ -20,7 +17,6 @@ window#waybar.hidden {
 
 /* Workspaces */
 #workspaces {
-  background: rgba(49, 50, 68, 0.8);
   border-radius: 12px;
   margin: 4px 0px;
   padding: 0px 8px;
@@ -36,7 +32,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  background: #89b4fa;
+  background: #ffafaf;
   color: #1e1e2e;
 }
 

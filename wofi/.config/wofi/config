@@ -1,13 +1,13 @@
 show=drun
 term=wezterm
 show_all=true
-gtk_dark=false
+gtk_dark=true
 location=center
 insensitive=false
 allow_markup=true
 allow_images=true
 line_wrap=word
-lines=8
+lines=6
 width=500
 no_actions=true
 prompt= Search
