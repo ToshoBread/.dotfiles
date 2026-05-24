@@ -1,0 +1,10 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode/big-pickle",
+  "shell": "/bin/zsh",
+  "autoupdate": "notify",
+  "share": "disabled",
+  "permission": {
+    "edit": "ask"
+  }
+}
