@@ -21,6 +21,7 @@ fi
 export KANBAN_FILE="kanban.json"
 export MAVEN_OPTS="--sun-misc-unsafe-memory-access=allow"
 export JAVA_HOME="/usr/lib/jvm/java-25-openjdk"
+export BRAVE_PATH="/usr/bin/brave"
 
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$XDG_CONFIG_HOME/composer/vendor/bin:$PATH"
