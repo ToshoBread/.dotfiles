@@ -20,7 +20,7 @@ fi
 
 export KANBAN_FILE="kanban.json"
 export MAVEN_OPTS="--sun-misc-unsafe-memory-access=allow"
-export JAVA_HOME="/usr/lib/jvm/java-25-openjdk"
+export JAVA_HOME="/usr/lib/jvm/java-26-openjdk"
 export BRAVE_PATH="/usr/bin/brave"
 
 export PATH="$HOME/.scripts:$PATH"
@@ -95,3 +95,6 @@ esac
 
 # opencode
 export PATH=/home/zndionisio/.opencode/bin:$PATH
+
+# jav
+export PATH="/home/zndionisio/.local/bin:$PATH"
