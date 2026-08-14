@@ -22,7 +22,7 @@ Every project goes through this process. A todo list, a single-function utility,
 You MUST create a task for each of these items and complete them in order:
 
 1. **Explore project context** — check files, docs, recent commits
-2. **Offer visual companion** (if topic will involve visual questions) — this is its own message, not combined with a clarifying question. See the Visual Companion section below.
+2. **Prototype design questions as they come up** — when a question is about UI feel or state/logic correctness rather than words, invoke the prototype skill instead of describing it in prose. See the Prototyping section below.
 3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
 4. **Propose 2-3 approaches** — with trade-offs and your recommendation
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
@@ -36,9 +36,10 @@ You MUST create a task for each of these items and complete them in order:
 ```dot
 digraph brainstorming {
     "Explore project context" [shape=box];
-    "Visual questions ahead?" [shape=diamond];
-    "Offer Visual Companion\n(own message, no other content)" [shape=box];
     "Ask clarifying questions" [shape=box];
+    "Design question hit\n(state/logic or UI)?" [shape=diamond];
+    "Invoke prototype skill" [shape=box];
+    "Fold verdict into design" [shape=box];
     "Propose 2-3 approaches" [shape=box];
     "Present design sections" [shape=box];
     "User approves design?" [shape=diamond];
@@ -47,11 +48,13 @@ digraph brainstorming {
     "User reviews spec?" [shape=diamond];
     "Invoke writing-plans skill" [shape=doublecircle];
 
-    "Explore project context" -> "Visual questions ahead?";
-    "Visual questions ahead?" -> "Offer Visual Companion\n(own message, no other content)" [label="yes"];
-    "Visual questions ahead?" -> "Ask clarifying questions" [label="no"];
-    "Offer Visual Companion\n(own message, no other content)" -> "Ask clarifying questions";
-    "Ask clarifying questions" -> "Propose 2-3 approaches";
+    "Explore project context" -> "Ask clarifying questions";
+    "Ask clarifying questions" -> "Design question hit\n(state/logic or UI)?";
+    "Design question hit\n(state/logic or UI)?" -> "Invoke prototype skill" [label="yes"];
+    "Design question hit\n(state/logic or UI)?" -> "Propose 2-3 approaches" [label="no"];
+    "Invoke prototype skill" -> "Fold verdict into design";
+    "Fold verdict into design" -> "Ask clarifying questions" [label="more questions remain"];
+    "Fold verdict into design" -> "Propose 2-3 approaches" [label="done clarifying"];
     "Propose 2-3 approaches" -> "Present design sections";
     "Present design sections" -> "User approves design?";
     "User approves design?" -> "Present design sections" [label="no, revise"];
@@ -63,7 +66,7 @@ digraph brainstorming {
 }
 ```
 
-**The terminal state is invoking writing-plans.** Do NOT invoke frontend-design, mcp-builder, or any other implementation skill. The ONLY skill you invoke after brainstorming is writing-plans.
+**The terminal state is invoking writing-plans.** Do NOT invoke frontend-design, mcp-builder, or any other implementation skill. The only skills invoked during brainstorming are prototype (mid-loop, for design questions) and writing-plans (at the end). Prototype output is throwaway — it answers a question, it doesn't become the implementation.
 
 ## The Process
 
@@ -144,22 +147,21 @@ Wait for the user's response. If they request changes, make them and re-run the 
 - **Incremental validation** - Present design, get approval before moving on
 - **Be flexible** - Go back and clarify when something doesn't make sense
 
-## Visual Companion
+## Prototyping
 
-A browser-based companion for showing mockups, diagrams, and visual options during brainstorming. Available as a tool — not a mode. Accepting the companion means it's available for questions that benefit from visual treatment; it does NOT mean every question goes through the browser.
+For questions that aren't answered in words — does this state model feel right, what should this UI look like — invoke the prototype skill instead of describing the answer in prose or a diagram. No consent step needed: it's throwaway code on disk, not a browser session, so there's nothing to opt into.
 
-**Offering the companion:** When you anticipate that upcoming questions will involve visual content (mockups, layouts, diagrams), offer it once for consent:
+**Per-question decision:** decide FOR EACH QUESTION whether it needs prototype or fits the normal clarifying-question loop. The test: **would the user trust this more running than described?**
 
-> "Some of what we're working on might be easier to explain if I can show it to you in a web browser. I can put together mockups, diagrams, comparisons, and other visuals as we go. This feature is still new and can be token-intensive. Want to try it? (Requires opening a local URL)"
+- **Invoke prototype** for content that needs to be run to judge — state machines, business logic that's hard to reason about on paper, UI layout/feel questions
+- **Stay in the terminal** for content that's just text — requirements, conceptual A/B/C choices, tradeoff lists, scope decisions
 
-**This offer MUST be its own message.** Do not combine it with clarifying questions, context summaries, or any other content. The message should contain ONLY the offer above and nothing else. Wait for the user's response before continuing. If they decline, proceed with text-only brainstorming.
+A question about a UI topic is not automatically a prototype question. "What does personality mean in this context?" is conceptual — stay in the terminal. "Which wizard layout feels right?" is a prototype question — invoke prototype.
 
-**Per-question decision:** Even after the user accepts, decide FOR EACH QUESTION whether to use the browser or the terminal. The test: **would the user understand this better by seeing it than reading it?**
+**Loop:**
 
-- **Use the browser** for content that IS visual — mockups, wireframes, layout comparisons, architecture diagrams, side-by-side visual designs
-- **Use the terminal** for content that is text — requirements questions, conceptual choices, tradeoff lists, A/B/C/D text options, scope decisions
+1. Hit a design question mid-interview → invoke `prototype`. State/logic questions get a single shareable HTML file (plain HTML/CSS/JS, no build). UI/layout questions get several toggleable variations as real routes in the project, switched via URL param and run through the project's own task runner.
+2. Prototype answers the question and captures itself on a `prototype/<name>` branch — throwaway from day one, not something to build on.
+3. Fold the verdict (not the code) back into the design as a normal answered question, and continue the clarifying-question loop or move on to proposing approaches. When the design doc is written, note the branch name next to the decision it settled — that's the pointer, since brainstorming has no issue tracker to hang it on.
 
-A question about a UI topic is not automatically a visual question. "What does personality mean in this context?" is a conceptual question — use the terminal. "Which wizard layout works better?" is a visual question — use the browser.
-
-If they agree to the companion, read the detailed guide before proceeding:
-`skills/brainstorming/visual-companion.md`
+Prototype output never becomes part of the design doc directly — only the decision it settled does.
