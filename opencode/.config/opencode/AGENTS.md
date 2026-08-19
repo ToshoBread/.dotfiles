@@ -9,3 +9,7 @@
 ## Code
 
 - Never use ambiguous variable names
+
+| Skill     | When to use                                       |
+| --------- | ------------------------------------------------- |
+| `caveman` | Always use to save tokens and streamline workflow |

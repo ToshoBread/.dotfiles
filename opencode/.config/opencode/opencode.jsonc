@@ -5,7 +5,6 @@
   "autoupdate": "notify",
   "lsp": true,
   "formatter": true,
-  "instructions": ["PREFERENCES.md"],
   "permission": {
     "external_directory": {
       "/tmp": "allow",
