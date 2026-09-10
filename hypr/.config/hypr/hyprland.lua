@@ -17,7 +17,7 @@ hl.monitor({
 ---- MY PROGRAMS ----
 ---------------------
 
-local terminal = "wezterm"
+local terminal = "kitty"
 local fileManager = "dolphin"
 local menu = "wofi"
 local browser = "brave --password-store=detect"
@@ -30,6 +30,7 @@ local organizer = "AppFlowy"
 hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprpaper & hypridle & waybar & swaync")
 	hl.exec_cmd(terminal, { workspace = 1 })
+	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	-- hl.exec_cmd(browser, { workspace = 2, silent = true })
 	-- hl.exec_cmd(organizer, { workspace = 3, silent = true })
 end)
@@ -193,6 +194,10 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(organizer))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("dict"))
+hl.bind(
+	mainMod .. " + V",
+	hl.dsp.exec_cmd("wl-paste | cliphist list | " .. menu .. " --dmenu | cliphist decode | wl-copy")
+)
 
 -- Hypr tools
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -m active"))
