@@ -17,7 +17,7 @@ local keybinds = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action_callback(function(window, pane)
 			local overrides = window:get_config_overrides() or {}
-			overrides.window_background_opacity = overrides.window_background_opacity == 1 and 0.9 or 1
+			overrides.window_background_opacity = overrides.window_background_opacity ~= 1 and 1 or 0.9
 			window:set_config_overrides(overrides)
 		end),
 	},
